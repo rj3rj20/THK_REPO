@@ -1968,6 +1968,9 @@
                                                                                         <div class="col-md-12">
                                                                                             <div class="thk-datagrid">
                                                                                                 <div class="datagrid" style="overflow-x: hidden;">
+                                                                                                    <a id="export_btn" style="display:none; font-size: 25px;color: #337ab7;border-radius: 2px;padding: 3px;
+                                margin-top: -11px; margin-left: 10px;cursor: pointer;" title="Excel">
+                                <i class="mdi mdi-file-excel"></i></a>
                                                                                                     <table id="myVBTable">
                                                                                                         <thead>
                                                                                                             <tr>
@@ -3334,7 +3337,7 @@
                                 if(e.data[key][k].type == 'P'){
                                     $("#THK_PROJECT #" + key).css({"background": "url(../assets/images/select-bg.png)","border": "1px solid rgba(3, 169, 244, 0.03)","border-style":"none"})
                                 }else{
-                                    $("#THK_PROJECT #" + key).css({"background":"#fff","border":"1px solid #d4d7da"})
+                                    
                                 }
                             });
                         }
@@ -3427,6 +3430,7 @@
                                     if(e.data[dd_key][j].type == 'P'){
                                         $("#THK_PROJECT #" + dd_key).css({"background": "rgb(221, 239, 250)","border": "1px solid rgb(221, 239, 250)"})
                                     }else{
+                                        console.log('text')
                                         $("#THK_PROJECT #" + dd_key).css({"background":"#fff","border":"1px solid #d4d7da"})
                                     }
                                 });
@@ -3747,6 +3751,7 @@
                             id: $(this).val()
                         }
                     }, function(e) {
+                        $('#THK_PROJECT #export_btn').show();
                         $('#THK_PROJECT #myVBTable').DataTable().destroy();
                         $("#THK_PROJECT #tbodyTableDynamic").show();
                         if (typeof e.data !== 'undefined') {
@@ -4894,7 +4899,10 @@ href="" removed click added   luish
                     sendRequest('/single/get-kettleData', {
                         "data": {
                             "businessobject_name": "THK Download",
-                            "params": {}
+                            "params": {
+                            "POEM_GROUP_ID":$('#THK_PROJECT #oemGroup').val(),
+                            "PUSER_ID ": $('header-element')[0].email
+                            }
                         }
                     }, function(e) {
                         var excelData=[];
