@@ -1395,6 +1395,18 @@
                 height: 30px;
                 line-height: 30px;
             }
+            .thk-summary-header span{
+                color: #b82424;
+                position: absolute;
+                top: 4px;
+                /* left: 150px; */
+                font-weight: 600;
+                border: 1px solid #fff;
+                padding: 0px 10px;
+                background: #fff;
+                border-radius: 2px;
+                right: 20px;
+            }
 
             .thk-summary-body{
                 background: #fafafa;
@@ -1753,6 +1765,18 @@
                 font-size: 18px;
                 vertical-align: inherit;
             }
+            .thkreport-output{
+                background: rgb(51, 51, 51);
+                padding: 4px 15px;
+                font-size: 12px;
+                border-radius: 50px;
+                color: #fff;
+                position: absolute;
+                font-weight: 600;
+                top: 2px;
+                cursor: pointer;
+                border:1px solid #333;
+            }
 
         </style>
         <div id="THK_PROJECT">
@@ -1822,12 +1846,12 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-12 thk--top-header" id="thk_header">
-                                    <div class="col-md-3">
-                                        <h2 style="font-size:20px; margin:3px; p-0">
+                                    <div class="col-md-2 p-0">
+                                        <h2 style="font-size:18px; margin:3px; p-0">
                                             Planner -<span style="font-size:18px"> Vehicle Build ID</span>
                                         </h2>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-5">
                                         <div style="display: inline-flex;position: absolute;z-index: 1;top:0px;">
                                             <label style="font-size: 14px;font-weight:600;margin-top:4px" class="control-label" for="inputUserNameOne">Please Select An OEM Group </label>&nbsp;&nbsp;
                                             <select class="form-control" id="oemGroup" name="oemSelect" placeholder="Select" style="width:300px;margin-top:-4px">
@@ -1835,6 +1859,7 @@
                                             </select>
                                         </div>
                                     </div>
+                                    <div class="col-md-2"><a href="" class="thkreport-output">Output report refresh</a></div>
                                     <div class="col-md-3">
                                         <span class="top-note">
                                             Disabled Fields are Auto Populated  <sup style="color: red"><large>*</large></sup>Mandatory
@@ -2159,8 +2184,7 @@
                                             <div class="row row-margin">
                                                 <div class="col-md-3">
                                                     <div class="form-group">
-                                                        <label class="control-label" for="inputUserNameOne">Badge<sup
-                                                                                                                      style="color: red"><small style="font-size:14px"></small></sup></label> <input type="text" class="form-control" id="badge" name="Info Required" disabled required="required" value="">
+                                                        <label class="control-label" for="inputUserNameOne">Badge<sup  style="color: red"><small style="font-size:14px"></small></sup></label> <input type="text" class="form-control" id="badge" name="Info Required" disabled required="required" value="">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">
@@ -2171,8 +2195,7 @@
                                                 </div>
                                                 <div class="col-md-3">
                                                     <div class="form-group">
-                                                        <label class="control-label" for="inputUserNameOne">Program<sup
-                                                                                                                        style="color: red"><small style="font-size:14px"></small></sup></label> <input type="text" class="form-control form-control-yellow" id="platfrom" name="Info Required" disabled required="required" value="">
+                                                        <label class="control-label" for="inputUserNameOne">Program<sup style="color: red"><small style="font-size:14px"></small></sup></label> <input type="text" class="form-control form-control-yellow" id="platfrom" name="Info Required" disabled required="required" value="">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">
@@ -2819,7 +2842,8 @@
             <!-- <button type="button" class="close" data-dismiss="modal">&times;</button>                        
 <span style="position: absolute;color: white;right: 15px;top: 9px;font-size: 23px;">
 <i class="mdi mdi-close-circle"></i></span>  -->
-            <h4>Summary Details</h4>                        
+            <h4>Summary Details</h4>  
+            <span>VBID :- <lable id="summary_vbid"> 56</label></span>                      
         </div>
 
         <div class="thk-container-summary">
@@ -4660,6 +4684,7 @@ href="" removed click added   luish
                                     tbody+='<tr><td>'+e.priceChange+'</td><td>'+e.monthYear+'</td><td>'+e.reason+'</td><td>'+e.radioAbsolute+'</td><td>'+e.absoluteValue+'</td><td>'+e.priceInc+'</td></tr>'
                                 })
                                 $("#THK_PROJECT #summary_pricing_table").html(tbody);
+                                $("#THK_PROJECT #summary_vbid").text($('#THK_PROJECT #vbidhidden').val())
                                 $('#THK_PROJECT #summarypage').css({'display':'block'})
                                 $('#THK_PROJECT #summary_part_name').text($('#THK_PROJECT #part_select').val());
                                 $('#THK_PROJECT #summary_part_id').text($('#THK_PROJECT #partId').val());
@@ -4900,7 +4925,7 @@ href="" removed click added   luish
                         "data": {
                             "businessobject_name": "THK Download",
                             "params": {
-                            "POEM_GROUP_ID":$('#THK_PROJECT #oemGroup').val(),
+                            "POEM_GROUP_ID":Number($('#THK_PROJECT #oemGroup').val()),
                             "PUSER_ID ": $('header-element')[0].email
                             }
                         }
