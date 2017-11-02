@@ -739,7 +739,7 @@
                             if($("#platformlist").val() != null){
                                 data['platformFamilyId']=$("#platformlist").val()
                             }
-                            if($("#platformId").val() != undefined){
+                            if($("#programlist").val() != undefined){
                                 data['platformId']= $("#programlist").val();
                             }
                             if($('#product').val() !=undefined){
