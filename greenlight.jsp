@@ -305,7 +305,7 @@
                                     </div>
                                     <div class="form-group col-md-3">
                                         <label class="">Program</label><sup style="color: red"><small style="font-size:14px">*</small></sup>
-                                        <select class="form-control" name="program" id="programlist">
+                                        <select class="form-control" name="program" style="height: 33px;" multiple="multiple" name="platform" id="programlist">
 
                                         </select>
                                     </div>
@@ -448,6 +448,14 @@
                                                                 <th>Year 2021</th>
                                                                 <th>Year 2022</th>
                                                                 <th>Total Green Light Sum</th>
+                                                                <th>Product</th>
+                                                                <th>Remark</th>
+                                                                <th>Plant</th>
+                                                                <th>Prob Code</th>
+                                                                <th>Award Date</th>
+                                                                <th>Vehicle SOP</th>
+                                                                <th>Reason</th>
+                                                                <th>Sales Peak</th>
                                                                 <th>Action</th>
                                                             </tr>
                                                         </thead>
@@ -669,6 +677,22 @@
                         if($("#platformlist").val()!=null)
                             select2onchange();
                     });
+                    $("#programlist").select2({closeOnSelect: false}).on('select2:select', function(e) {
+                        if (e.params.data.text.trim().toUpperCase() ==="") {
+                            if($("#programlist").val()!=null){
+                                var aa=$("#programlist").val();
+                                $("#programlist").val(aa.slice(1)).trigger("change");     
+                            }
+                            $(e.params.originalEvent.currentTarget).attr('aria-selected', 'false');
+                        }
+                    }).on('select2:unselect', function(e) {
+                        if (e.params.data.text.trim().toUpperCase().indexOf('ALL') === 0) {
+                            $($(e.params.originalEvent.currentTarget).siblings()).attr('aria-selected', 'false')
+                        }
+                    }).on("select2:close", function(e,ui) {
+                       // if($("#programlist").val()!=null)
+                            //select2onchange();
+                    });
                     $("#THK_Greenlight").on("click", ".deletebutton", function(evt) {
                         sendRequest("/thk/activeFlagGreenLightDelete", {
                             "data": {
@@ -800,7 +824,6 @@
                                             }
                                             var aa=0;
                                             $.each(e.data.data, function(i, k) {
-
                                                 if(aa==1){
                                                     aa=1;
                                                     thead += '';
