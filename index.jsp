@@ -1859,7 +1859,9 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-2"><a href="" class="thkreport-output">Output report refresh</a></div>
+                                    <div class="col-md-2">
+                                        <span id="outputreport" style="display:none; z-index:99" class="thkreport-output">Output Report Refresh</span>
+                                    </div>
                                     <div class="col-md-3">
                                         <span class="top-note">
                                             Disabled Fields are Auto Populated  <sup style="color: red"><large>*</large></sup>Mandatory
@@ -3377,7 +3379,7 @@
                             
                         }
                     }, function(e) {
-                        for (var i = 0, j = item.length; i < j; i++) {
+                        for (var i = 0, j = item.length; i < j; i++) { 
                             var key = item[i];
                             $.each(e.data[key], function(k) {
                                 $("#THK_PROJECT #" + key).append('<option value="' + e.data[key][k].id + '">' + e.data[key][k].value + '</option>');
@@ -3386,6 +3388,9 @@
                         var a = $("#THK_PROJECT #oemGroup").html();
                         $("#THK_PROJECT #oemGroupGl").html(a)
                         $('#THK_PROJECT').ccPageLoader(false);
+                        if(e.data.Admin[0].admin==='Y'){
+                            $('#THK_PROJECT #outputreport').show();
+                        }
                     }, function(e) {
                         console.error(e);
                     });
@@ -3654,6 +3659,7 @@
                     maxDate = moment(maxDate, "DD-MM-YYYY").format("YYYY-MM-DD");
                     $('#THK_PROJECT #myTable tr').each(function() {
                         var currentRecord = $(this).find('input[name="monthYear"]');
+
                         currentRecord.attr('min', minDate);
                         currentRecord.attr('max', maxDate);
                         var prev = $(this).prev();
@@ -3967,7 +3973,6 @@ href="" removed click added   luish
                         }
                     },
                     validator: function(from, to) {
-
                         var numTabs = thk_wizard.find('.wizard-pane').length,
                             isValidTab = validateForm(from.index);
                         if (!isValidTab) {
@@ -4420,7 +4425,9 @@ href="" removed click added   luish
                                 if (e!=null && typeof e === 'object') {
                                     for (var i = 0, j = e.length; i < j; i++) {
                                         var ele = $('<tr><td><input type="text"  value="' + e[i][0] + '" disabled readonly class="form-control test-control" style="width: 100%;" name="pricechange"/></td><td><div class="input-group date" ><input style="cursor: not-allowed; width: 100%;" class="form-control test-control" id="test" type="date" onkeydown="return false" disabled readonly value="' + e[i][1] + '" name="monthYear"/></div></td><td><select class="form-control test-control" style="width: 100%;" disabled="true" name="reason"><option id="1" value="1">Contractual</option><option id="2" value="2">Non Contractual Committed</option><option id="3" value="3"> Non-Contractual Non Committed</option><option id="4" value="4">Material Inflation/Deflation</option><option id="5" value="5"> Tooling, Amortization, Packaging, Others</option><option id="6" value="6">VAVE (Value Add Value Engineering)</option></select></td><td ><fieldset class="test-control"><input type="radio" checked disabled name="ChangeType' + i + '"data-type="abs">Absolute Value<br><input type="radio" disabled name="ChangeType' + i + '" class="group12" data-type="percent">%Change</fieldset></td><td><div class="form-group" style="width: 100%; margin-top: 0px;"><input style="cursor:not-allowed;" disabled value="' + e[i][4] + '" type="text" class="form-control test-control" name="itemValue"></div></td><td><input value="' + e[i][6] + '" type="number" disabled readonly class="form-control test-control" style="width: 100%; cursor: not-allowed;" name="priceInclude" disabled readonly/></td><td><input type="number" class="form-control test-control" style="width: 100%; cursor: not-allowed;" name="variance" disabled readonly/></td><td><i id="fetch_del_row" class="material-icons" style="margin-left: 40%; cursor:pointer"  aria-hidden="true">delete_forever</i></td></tr>')
+
                                         $('#THK_PROJECT #myTable').append(ele);
+                                        handleDate()
                                         ele.find('[name="reason"]').val(e[i][2]);
                                         if (e[i][3].toUpperCase() == 'P') {
                                             ele.find('[data-type="percent"]').prop('checked', true)
@@ -4445,8 +4452,15 @@ href="" removed click added   luish
                                                 aDec: ","
                                             });
                                         }
+                                        ele.find('[name="monthYear"]').on('change', function() {
+                                            handleDate();
+                                        });
+                                        ele.find('[name="monthYear"]').on('mousewheel.disableScroll', function(e) {
+                                            e.preventDefault()
+                                        })
                                         ele.find('[name="itemValue"]').on('keyup change', function(e) {
                                             calculatePC();
+                                            
                                         });
                                         ele.find("[name='ChangeType" + i + "']").on('change', function(e) {
                                             calculatePC();
@@ -4838,7 +4852,6 @@ href="" removed click added   luish
 
 
                 function validateForm(index) {
-
                     var fv = $('#THK_PROJECT #exampleWizardFormContainer').data('formValidation');
                     var $tab = $('#THK_PROJECT #exampleWizardFormContainer').find('.wizard-pane').eq(index);
                     try {
@@ -4861,6 +4874,19 @@ href="" removed click added   luish
                     if((e.keyCode >= 48 && e.keyCode <=57)||(e.keyCode >=65 && e.keyCode<=90) ||(e.keyCode>=97 && e.keyCode<=122) || e.keyCode == 46 || e.keyCode == 8){
                         updateflag=1;
                     }
+                })
+                $('#THK_PROJECT #outputreport').on('click',function(e){
+                    
+                    sendRequest('/single/get-kettleData', {
+                        "data": {
+                            "businessobject_name": "THK Output Refresh",
+                            "params": {}
+                        }
+                    },function(e){
+                        console.log(e)
+                    },function(e) {
+                        console.error(e)
+                    })
                 })
                 $('#THK_PROJECT #quotedDate, #THK_PROJECT #awardDate').on('change',function(e){
                     updateflag=1;
@@ -4920,12 +4946,18 @@ href="" removed click added   luish
                     e.preventDefault();
                     $('#summarypage').ccPageLoader();
                     var originalData;
+                    var oemid=Number($('#THK_PROJECT #oemGroup').val());
+                    if(oemid === -1){
+                        oemid = 'ALL'
+                    }else{
+                        oemid=oemid
+                    }
                     originalData = [];
                     sendRequest('/single/get-kettleData', {
                         "data": {
                             "businessobject_name": "THK Download",
                             "params": {
-                            "POEM_GROUP_ID":Number($('#THK_PROJECT #oemGroup').val()),
+                            "POEM_GROUP_ID":oemid,
                             "PUSER_ID ": $('header-element')[0].email
                             }
                         }
