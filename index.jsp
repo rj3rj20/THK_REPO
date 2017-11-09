@@ -3362,8 +3362,6 @@
                                 $("#THK_PROJECT #" + key).append('<option value="' + e.data[key][k].id + '">' + e.data[key][k].value + '</option>');
                                 if(e.data[key][k].type == 'P'){
                                     $("#THK_PROJECT #" + key).css({"background": "url(../assets/images/select-bg.png)","border": "1px solid rgba(3, 169, 244, 0.03)","border-style":"none"})
-                                }else{
-                                    
                                 }
                             });
                         }
@@ -3458,9 +3456,6 @@
                                     }
                                     if(e.data[dd_key][j].type == 'P'){
                                         $("#THK_PROJECT #" + dd_key).css({"background": "rgb(221, 239, 250)","border": "1px solid rgb(221, 239, 250)"})
-                                    }else{
-                                        console.log('text')
-                                        $("#THK_PROJECT #" + dd_key).css({"background":"#fff","border":"1px solid #d4d7da"})
                                     }
                                 });
                         }
@@ -4869,10 +4864,12 @@ href="" removed click added   luish
                 }
                 $('#THK_PROJECT #supplier, #THK_PROJECT #supplierPlant, #THK_PROJECT #supplierShipTo, #THK_PROJECT #supplierSoldTo, #THK_PROJECT #techLevelOne, #THK_PROJECT #techLevelTwo, #THK_PROJECT #houseDesc, #THK_PROJECT #partsPerVehicle, #THK_PROJECT #prob, #THK_PROJECT #opportunityPipeline, #THK_PROJECT #currency, #THK_PROJECT #currencyFormat').on('change',function(e){
                     updateflag=1;
+                    $(e.target).removeAttr('style')
                 })
                 $('#THK_PROJECT #thkPartName, #THK_PROJECT #customerPartNo, #THK_PROJECT #partDescLong, #THK_PROJECT #startPriceLc, #THK_PROJECT #applicationRateYear1, #THK_PROJECT #applicationRateYear2, #THK_PROJECT #applicationRateYear3, #THK_PROJECT #applicationRateYear4, #THK_PROJECT #applicationRateYear5, #THK_PROJECT #applicationRateYear6, #THK_PROJECT #allocationRateYear1, #THK_PROJECT #allocationRateYear2, #THK_PROJECT #allocationRateYear3, #THK_PROJECT #allocationRateYear4, #THK_PROJECT #allocationRateYear5, #THK_PROJECT #allocationRateYear6').on('keyup',function(e){
                     if((e.keyCode >= 48 && e.keyCode <=57)||(e.keyCode >=65 && e.keyCode<=90) ||(e.keyCode>=97 && e.keyCode<=122) || e.keyCode == 46 || e.keyCode == 8){
                         updateflag=1;
+                        $(e.target).removeAttr('style')
                     }
                 })
                 $('#THK_PROJECT #outputreport').on('click',function(e){
