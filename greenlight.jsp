@@ -705,44 +705,44 @@
                         })
                     })
                     $("#submit_btn").on('click', function() {
-                        if ($("#year2016").val().length == 0) {
-                            toastr.error("2017 Greenlight amount is missing", "", {
+                        if ($("#year2016").autoNumeric('get').length == 0 || Number($("#year2016").autoNumeric('get')) > 0) {
+                            toastr.error("2017 Greenlight amount is missing or in negative", "", {
                                 "positionClass": "toast-top-right",
                                 "preventDuplicates": true,
                                 "timeOut": "3000"
                             });
-                        } else if ($("#year2017").val().length == 0) {
-                            toastr.error("2018 Greenlight amount is missing", "", {
+                        } else if ($("#year2017").autoNumeric('get').length == 0 || Number($("#year2017").autoNumeric('get')) > 0) {
+                            toastr.error("2018 Greenlight amount is missing or in negative", "", {
                                 "positionClass": "toast-top-right",
                                 "preventDuplicates": true,
                                 "timeOut": "3000"
                             });
-                        } else if ($("#year2018").val().length == 0) {
-                            toastr.error("2019 Greenlight amount is missing", "", {
+                        } else if ($("#year2018").autoNumeric('get').length == 0 || Number($("#year2018").autoNumeric('get')) > 0) {
+                            toastr.error("2019 Greenlight amount is missing or in negative", "", {
                                 "positionClass": "toast-top-right",
                                 "preventDuplicates": true,
                                 "timeOut": "3000"
                             });
-                        } else if ($("#year2019").val().length == 0) {
-                            toastr.error("2020 Greenlight amount is missing", "", {
+                        } else if ($("#year2019").autoNumeric('get').length == 0 || Number($("#year2019").autoNumeric('get')) > 0) {
+                            toastr.error("2020 Greenlight amount is missing or in negative", "", {
                                 "positionClass": "toast-top-right",
                                 "preventDuplicates": true,
                                 "timeOut": "3000"
                             });
-                        } else if ($("#year2020").val().length == 0) {
-                            toastr.error("2021 Greenlight amount is missing", "", {
+                        } else if ($("#year2020").autoNumeric('get').length == 0 || Number($("#year2020").autoNumeric('get')) > 0) {
+                            toastr.error("2021 Greenlight amount is missing or in negative", "", {
                                 "positionClass": "toast-top-right",
                                 "preventDuplicates": true,
                                 "timeOut": "3000"
                             });
-                        } else if ($("#year2021").val().length == 0) {
-                            toastr.error("2022 Greenlight amount is missing", "", {
+                        } else if ($("#year2021").autoNumeric('get').length == 0 || Number($("#year2021").autoNumeric('get')) > 0) {
+                            toastr.error("2022 Greenlight amount is missing or in negative", "", {
                                 "positionClass": "toast-top-right",
                                 "preventDuplicates": true,
                                 "timeOut": "3000"
                             });
-                        } else if ($("#amount").val().length == 0) {
-                            toastr.error("Greenlight total amount is missing", "", {
+                        } else if ($("#amount").autoNumeric('get').length == 0 || Number($("#amount").autoNumeric('get')) > 0) {
+                            toastr.error("Greenlight total amount is missing or in negative", "", {
                                 "positionClass": "toast-top-right",
                                 "preventDuplicates": true,
                                 "timeOut": "3000"
