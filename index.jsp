@@ -3807,9 +3807,9 @@
                                     '</td><td>' +
                                     k.namePlatePlanner.value +
                                     '</td><td>' +
-                                    k.vbEopPlanner.value +
-                                    '</td><td>' +
                                     k.vbSopPlanner.value +
+                                    '</td><td>' +
+                                    k.vbEopPlanner.value +
                                     '</td><td><select id="planstatus" class=""><option value="1" ' + ((k.vbidPlanningPlanner.value == '1') ? ("selected") : ("")) + '>Yet to Start</option><option value="2" ' + ((k.vbidPlanningPlanner.value == '2') ? ("selected") : ("")) + '>In Progress</option><option value="3" ' + ((k.vbidPlanningPlanner.value == '3') ? ("selected") : ("")) + '>Planned</option></select></td><td><select id="status" class="state"><option value="Y" ' + ((k.activeFlagPlanner.id == 'Y') ? ("selected") : ("")) + '>Keep</option><option value="N" ' + ((k.activeFlagPlanner.id == 'N') ? ("selected") : ("")) + '>Exclude</option></select></td></tr>';
                                 '</td><td></td></tr>';
                             });
@@ -4954,8 +4954,8 @@ href="" removed click added   luish
                         "data": {
                             "businessobject_name": "THK Download",
                             "params": {
-                            "POEM_GROUP_ID":oemid,
-                            "PUSER_ID ": $('header-element')[0].email
+                            "POEM_GROUP_ID":[oemid],
+                            "PUSER_ID": [$('header-element')[0].email]
                             }
                         }
                     }, function(e) {
