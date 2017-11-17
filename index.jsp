@@ -4873,7 +4873,11 @@ href="" removed click added   luish
                     }
                 })
                 $('#THK_PROJECT #outputreport').on('click',function(e){
-                    
+                    toastr.success("Output Report will be refreshed soon.", "", {
+                        "positionClass": "toast-top-right",
+                        "preventDuplicates": true,
+                        "timeOut": "3000"
+                    });
                     sendRequest('/single/get-kettleData', {
                         "data": {
                             "businessobject_name": "THK Output Refresh",
