@@ -304,7 +304,7 @@
                                         </select>
                                     </div>
                                     <div class="form-group col-md-3">
-                                        <label class="">Program</label><sup style="color: red"><small style="font-size:14px">*</small></sup>
+                                        <label class="">Program</label>
                                         <select class="form-control" name="program" style="height: 33px;" multiple="multiple" name="platform" id="programlist">
 
                                         </select>
@@ -320,7 +320,7 @@
                                     
                                     <div class="form-group col-md-3">
                                         <label>Remark</label>
-                                            <input type="text" class="form-control" id="remark" placeholder="remark" onkeypress=''/>
+                                            <input type="text" class="form-control" maxlength="300" id="remark" placeholder="remark" onkeypress=''/>
                                     </div>
                                     
                                     <div class="form-group col-md-3">
@@ -616,6 +616,12 @@
                         aDec: '.',
                         aSign: '$ '
                     });
+                    $('#salespeak').autoNumeric("init", {
+                        vMax: '99999999999999.99',
+                        aSep: ',',
+                        aDec: '.',
+                        aSign: '$ '
+                    });
                     $('#amount').autoNumeric("init", {
                         vMax: '999999999999.99',
                         aSep: ',',
@@ -663,7 +669,6 @@
 
                             if($("#platformlist").val()!=null){
                                 var aa=$("#platformlist").val();
-
                                 $("#platformlist").val(aa.slice(1)).trigger("change");     
                             }
 
@@ -674,14 +679,21 @@
                             $($(e.params.originalEvent.currentTarget).siblings()).attr('aria-selected', 'false')
                         }
                     }).on("select2:close", function(e,ui) {
-                        if($("#platformlist").val()!=null)
-                            select2onchange();
+                        if($("#platformlist").val()!=null){
+                             select2onchange();
+                         }else{
+                            $("#programlist").empty();
+                         }
+                           
                     });
                     $("#programlist").select2({closeOnSelect: false}).on('select2:select', function(e) {
                         if (e.params.data.text.trim().toUpperCase() ==="") {
                             if($("#programlist").val()!=null){
+                                console.log('progdone')
                                 var aa=$("#programlist").val();
                                 $("#programlist").val(aa.slice(1)).trigger("change");     
+                            }else{
+                                console.log('prog not done')
                             }
                             $(e.params.originalEvent.currentTarget).attr('aria-selected', 'false');
                         }
@@ -706,43 +718,43 @@
                     })
                     $("#submit_btn").on('click', function() {
                         if ($("#year2016").autoNumeric('get').length == 0 || Number($("#year2016").autoNumeric('get')) > 0) {
-                            toastr.error("2017 Greenlight amount is missing or in negative", "", {
+                            toastr.error("2017 Greenlight amount is missing or is positive", "", {
                                 "positionClass": "toast-top-right",
                                 "preventDuplicates": true,
                                 "timeOut": "3000"
                             });
                         } else if ($("#year2017").autoNumeric('get').length == 0 || Number($("#year2017").autoNumeric('get')) > 0) {
-                            toastr.error("2018 Greenlight amount is missing or in negative", "", {
+                            toastr.error("2018 Greenlight amount is missing or is positive", "", {
                                 "positionClass": "toast-top-right",
                                 "preventDuplicates": true,
                                 "timeOut": "3000"
                             });
                         } else if ($("#year2018").autoNumeric('get').length == 0 || Number($("#year2018").autoNumeric('get')) > 0) {
-                            toastr.error("2019 Greenlight amount is missing or in negative", "", {
+                            toastr.error("2019 Greenlight amount is missing or is positive", "", {
                                 "positionClass": "toast-top-right",
                                 "preventDuplicates": true,
                                 "timeOut": "3000"
                             });
                         } else if ($("#year2019").autoNumeric('get').length == 0 || Number($("#year2019").autoNumeric('get')) > 0) {
-                            toastr.error("2020 Greenlight amount is missing or in negative", "", {
+                            toastr.error("2020 Greenlight amount is missing or is positive", "", {
                                 "positionClass": "toast-top-right",
                                 "preventDuplicates": true,
                                 "timeOut": "3000"
                             });
                         } else if ($("#year2020").autoNumeric('get').length == 0 || Number($("#year2020").autoNumeric('get')) > 0) {
-                            toastr.error("2021 Greenlight amount is missing or in negative", "", {
+                            toastr.error("2021 Greenlight amount is missing or is positive", "", {
                                 "positionClass": "toast-top-right",
                                 "preventDuplicates": true,
                                 "timeOut": "3000"
                             });
                         } else if ($("#year2021").autoNumeric('get').length == 0 || Number($("#year2021").autoNumeric('get')) > 0) {
-                            toastr.error("2022 Greenlight amount is missing or in negative", "", {
+                            toastr.error("2022 Greenlight amount is missing or is positive", "", {
                                 "positionClass": "toast-top-right",
                                 "preventDuplicates": true,
                                 "timeOut": "3000"
                             });
                         } else if ($("#amount").autoNumeric('get').length == 0 || Number($("#amount").autoNumeric('get')) > 0) {
-                            toastr.error("Greenlight total amount is missing or in negative", "", {
+                            toastr.error("Greenlight total amount is missing or is positive", "", {
                                 "positionClass": "toast-top-right",
                                 "preventDuplicates": true,
                                 "timeOut": "3000"
@@ -789,7 +801,7 @@
                                 data['prob']=$("#prob").val();
                             }
                             if($('#salespeak').val() !=""){
-                                data['salespeak']=$("#salespeak").val();
+                                data['salespeak']=$("#salespeak").autoNumeric('get');
                             }
                             sendRequest("/thk/saveGreenLight", {
                                 "data": data
