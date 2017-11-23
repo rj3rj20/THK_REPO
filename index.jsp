@@ -3817,8 +3817,8 @@
                             $("#THK_PROJECT #status").on('change', function(e) {
                                 sendRequest("/thk/activeFlagVbIdPlanner", {
                                     data: {
-                                        vbId: $($(e.target).parent().siblings()[0]).find('label').text(),
-                                        active_flag: $(e.target).val()
+                                        vbId: $($(e.target).parent().siblings()[0]).find('label').text().trim(),
+                                        active_flag: $(e.target).val().trim()
                                     }
                                 }, function(e) {}, function(e) {
                                     console.error(e)
@@ -4873,11 +4873,7 @@ href="" removed click added   luish
                     }
                 })
                 $('#THK_PROJECT #outputreport').on('click',function(e){
-                    toastr.success("Output Report will be refreshed soon.", "", {
-                        "positionClass": "toast-top-right",
-                        "preventDuplicates": true,
-                        "timeOut": "3000"
-                    });
+                    
                     sendRequest('/single/get-kettleData', {
                         "data": {
                             "businessobject_name": "THK Output Refresh",
