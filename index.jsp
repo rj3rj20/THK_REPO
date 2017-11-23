@@ -5066,9 +5066,10 @@ href="" removed click added   luish
                             /*
 filesaver.js used to download   luish
 */
+                            var aa=new Date();
                             saveAs(new Blob([s2ab(atob(data))], {
                                 type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64"
-                            }),  "download.xlsx");
+                            }),  "PlannerReport"+'_'+aa.getHours()+'-'+aa.getMinutes()+"-"+aa.getSeconds()+"_"+aa.toLocaleDateString()+".xlsx");
 
 
                             //        window.open("data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64," + data)

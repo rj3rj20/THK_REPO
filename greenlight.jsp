@@ -936,7 +936,18 @@
                         sendRequest('/single/get-kettleData', {
                             "data": {
                                 "businessobject_name": "THK Greenlight Download",
-                                "params": {}
+                                "params": {
+                                    "POEM_GROUP_ID":[null],  
+                                    "POEM_ID ":[null],
+                                    "PPLATFORM_ID":[null],
+                                    "PPROB_CODE_ID":[null],
+                                    "PPRODUCT_ID":[null],
+                                    "PPROGRAM_ID":[null],
+                                    "PREASON_ID":[null],
+                                    "PSUPPLIER_PLANT_ID":[null],
+                                    "emailId":[$('header-element')[0].email] 
+                                    
+                                }
                             }
                         }, function(e) {
                             var excelData=[];
@@ -1047,9 +1058,10 @@
                                 /*
 filesaver.js used to download   luish
 */
+                                var aa= new Date();
                                 saveAs(new Blob([s2ab(atob(data))], {
                                     type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64"
-                                }),  "download.xlsx");
+                                }),  "Greenlight"+'_'+aa.getHours()+'-'+aa.getMinutes()+"-"+aa.getSeconds()+"_"+aa.toLocaleDateString()+".xlsx");
 
 
                                 //        window.open("data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64," + data)
