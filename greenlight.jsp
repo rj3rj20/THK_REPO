@@ -459,7 +459,7 @@
                                                                 <th>Action</th>
                                                             </tr>
                                                         </thead>
-                                                        <tbody id="tbodyTableDynamic">
+                                                        <tbody id="greenlightbodyTableDynamic">
 
                                                         </tbody>
                                                     </table>
@@ -567,10 +567,10 @@
                         "data": {}
                     }, function(e) {
                         console.log('clear')
-                        $('#tbodyTableDynamic').empty()
+                        $('#greenlightbodyTableDynamic').empty()
                         var tbody = '';
                         var thead = '';
-                        $("#tbodyTableDynamic").show();
+                        $("#greenlightbodyTableDynamic").show();
                         if (typeof e.data !== 'undefined') {
                             var tbody = '';
                             var thead = '';
@@ -579,7 +579,7 @@
                             var dtable = $('<table/>')
                             for (var as = 0; as < trlen; as++) {
                                 var tr = $('<tr/>').attr('id', 'tr' + as)
-                                $("#tbodyTableDynamic").append(tr);
+                                $("#greenlightbodyTableDynamic").append(tr);
                             }
                             var aa=0;
                             $.each(e.data.data, function(i, k) {												
@@ -763,8 +763,8 @@
                             $('.main-body').ccPageLoader();
                             var data={};
                             data['oemGroupId']=$("#oemgrouplist").val();
-                            data['oemId']=$("#oemlist").val();
-
+                            data['oemId']=$("#oemlist").val();                            
+                            data['platformFamilyId']=$("#platformlist").val()
                             data['y1']= $("#year2016").autoNumeric('get');
                             data['y2']= $("#year2017").autoNumeric('get');
                             data['y3']= $("#year2018").autoNumeric('get');
@@ -772,9 +772,6 @@
                             data['y5']= $("#year2020").autoNumeric('get');
                             data['y6']= $("#year2021").autoNumeric('get');
                             data['total']= $("#amount").autoNumeric('get');
-                            if($("#platformlist").val() != null){
-                                data['platformFamilyId']=$("#platformlist").val()
-                            }
                             if($("#programlist").val() != undefined){
                                 data['platformId']= $("#programlist").val();
                             }
@@ -820,10 +817,10 @@
                                         "data": {}
                                     }, function(e) {
                                         console.log('clear')
-                                        $('#tbodyTableDynamic').empty()
+                                        $('#greenlightbodyTableDynamic').empty()
                                         var tbody = '';
                                         var thead = '';
-                                        $("#tbodyTableDynamic").show();
+                                        $("#greenlightbodyTableDynamic").show();
                                         if (typeof e.data !== 'undefined') {
                                             var tbody = '';
                                             var thead = '';
@@ -832,7 +829,7 @@
                                             var dtable = $('<table/>')
                                             for (var as = 0; as < trlen; as++) {
                                                 var tr = $('<tr/>').attr('id', 'tr' + as)
-                                                $("#tbodyTableDynamic").append(tr);
+                                                $("#greenlightbodyTableDynamic").append(tr);
                                             }
                                             var aa=0;
                                             $.each(e.data.data, function(i, k) {
