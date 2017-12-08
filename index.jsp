@@ -2763,7 +2763,7 @@
                 <h2>Annual Product Volume / Sales</h2>														
             </div>
             <div style="float: right;margin-top:-10px;font-size: 13px;padding-right: 105px;color:#b70025;font-weight:600">
-                Annual Volume and Sales is in USD $
+                Annual Volume and Sales are in USD $
             </div>
             <div class="row row-margin">
                 <div class="col-md-10 col-md-offset-1">
@@ -3625,9 +3625,10 @@
                     $(filterstr).show()
                     //$(j).parent().css('display','table-row')
                 }
-                function calculatePC() {
+                function    calculatePC() {
                     $('#THK_PROJECT #exampleFormContainer').formValidation('revalidateField', $('input#startPriceLc'));
                     $('#THK_PROJECT #exampleFormContainer').formValidation('revalidateField', $('[name=monthYear]'));
+                    $('#THK_PROJECT #exampleFormContainer').formValidation('revalidateField', $('[name=itemValue]'));
                     var lastValue = Number($('input#startPriceLc').autoNumeric('get'));
                     $('#THK_PROJECT #myTable tr').each(function() {
                         var obj = $(this).find('input[name=itemValue]');
@@ -3697,6 +3698,7 @@
                     handleDate();
                     $('#THK_PROJECT #exampleFormContainer').formValidation('addField', $('[name="itemValue"]'));
                     $('#THK_PROJECT #exampleFormContainer').formValidation('addField', $('[name="monthYear"]'));
+                    $('#THK_PROJECT #exampleFormContainer').formValidation('addField', $('[name="itemValue"]'));
                     var format = $('#currencyFormat').val()
                     if (format == 1) {
                         $(ele).find('[name="itemValue"]').autoNumeric('init', {
@@ -4419,10 +4421,14 @@ href="" removed click added   luish
                                 e = e.data;
                                 if (e!=null && typeof e === 'object') {
                                     for (var i = 0, j = e.length; i < j; i++) {
-                                        var ele = $('<tr><td><input type="text"  value="' + e[i][0] + '" disabled readonly class="form-control test-control" style="width: 100%;" name="pricechange"/></td><td><div class="input-group date" ><input style="cursor: not-allowed; width: 100%;" class="form-control test-control" id="test" type="date" onkeydown="return false" disabled readonly value="' + e[i][1] + '" name="monthYear"/></div></td><td><select class="form-control test-control" style="width: 100%;" disabled="true" name="reason"><option id="1" value="1">Contractual</option><option id="2" value="2">Non Contractual Committed</option><option id="3" value="3"> Non-Contractual Non Committed</option><option id="4" value="4">Material Inflation/Deflation</option><option id="5" value="5"> Tooling, Amortization, Packaging, Others</option><option id="6" value="6">VAVE (Value Add Value Engineering)</option></select></td><td ><fieldset class="test-control"><input type="radio" checked disabled name="ChangeType' + i + '"data-type="abs">Absolute Value<br><input type="radio" disabled name="ChangeType' + i + '" class="group12" data-type="percent">%Change</fieldset></td><td><div class="form-group" style="width: 100%; margin-top: 0px;"><input style="cursor:not-allowed;" disabled value="' + e[i][4] + '" type="text" class="form-control test-control" name="itemValue"></div></td><td><input value="' + e[i][6] + '" type="number" disabled readonly class="form-control test-control" style="width: 100%; cursor: not-allowed;" name="priceInclude" disabled readonly/></td><td><input type="number" class="form-control test-control" style="width: 100%; cursor: not-allowed;" name="variance" disabled readonly/></td><td><i id="fetch_del_row" class="material-icons" style="margin-left: 40%; cursor:pointer"  aria-hidden="true">delete_forever</i></td></tr>')
+                                        var ele = $('<tr><td><input type="text"  value="' + e[i][0] + '" disabled readonly class="form-control test-control" style="width: 100%;" name="pricechange"/></td><td><div class="input-group date" ><input style="width: 100%;" class="form-control test-control" id="test" type="date" onkeydown="return false" value="' + e[i][1] + '" name="monthYear"/></div></td><td><select class="form-control test-control" style="width: 100%;" name="reason"><option id="1" value="1">Contractual</option><option id="2" value="2">Non Contractual Committed</option><option id="3" value="3"> Non-Contractual Non Committed</option><option id="4" value="4">Material Inflation/Deflation</option><option id="5" value="5"> Tooling, Amortization, Packaging, Others</option><option id="6" value="6">VAVE (Value Add Value Engineering)</option></select></td><td ><fieldset class="test-control"><input type="radio" checked name="ChangeType' + i + '"data-type="abs">Absolute Value<br><input type="radio" name="ChangeType' + i + '" class="group12" data-type="percent">%Change</fieldset></td><td><div class="form-group" style="width: 100%; margin-top: 0px;"><input value="' + e[i][4] + '" type="text" class="form-control test-control changeVal" maxlength="14" name="itemValue" data-fv-notempty="true" required="required"></div></td><td><input value="' + e[i][6] + '" type="number" disabled readonly class="form-control test-control" style="width: 100%; cursor: not-allowed;" name="priceInclude" disabled readonly/></td><td><input type="number" class="form-control test-control" style="width: 100%; cursor: not-allowed;" name="variance" disabled readonly/></td><td><i id="fetch_del_row" class="material-icons" style="margin-left: 40%; cursor:pointer"  aria-hidden="true">delete_forever</i></td></tr>')
 
                                         $('#THK_PROJECT #myTable').append(ele);
                                         handleDate()
+                                        $('#THK_PROJECT #exampleFormContainer').formValidation('addField', $('[name="itemValue"]'));
+                                        $('#THK_PROJECT #exampleFormContainer').formValidation('revalidateField', $('input#startPriceLc'));
+                                        $('#THK_PROJECT #exampleFormContainer').formValidation('revalidateField', $('[name=monthYear]'));
+                                        $('#THK_PROJECT #exampleFormContainer').formValidation('revalidateField', $('[name=itemValue]'));
                                         ele.find('[name="reason"]').val(e[i][2]);
                                         if (e[i][3].toUpperCase() == 'P') {
                                             ele.find('[data-type="percent"]').prop('checked', true)
@@ -4873,14 +4879,35 @@ href="" removed click added   luish
                     }
                 })
                 $('#THK_PROJECT #outputreport').on('click',function(e){
-                    
-                    sendRequest('/single/get-kettleData', {
-                        "data": {
-                            "businessobject_name": "THK Output Refresh",
-                            "params": {}
-                        }
+                    $('#THK_PROJECT').ccPageLoader();
+                    sendRequest('/thk/outputReport', {
+                        "data": {}
                     },function(e){
-                        console.log(e)
+                        if(e.data.data.OutputReport[0].status.toLowerCase() == 'completed'){
+                            $('#THK_PROJECT').ccPageLoader(false);
+                            toastr.success("Output report refresh is in progress", "", {
+                                "positionClass": "toast-top-right",
+                                "preventDuplicates": true,
+                                "timeOut": "3000"
+                            });
+                            sendRequest('/single/get-kettleData', {
+                                "data": {
+                                    "businessobject_name": "THK Output Refresh",
+                                    "params": {}
+                                }
+                            },function(e){
+                                console.log(e)
+                            },function(e) {
+                                console.error(e)
+                            })
+                        }else{
+                            $('#THK_PROJECT').ccPageLoader(false);
+                            toastr.warning("Output report refresh is running", "", {
+                                "positionClass": "toast-top-right",
+                                "preventDuplicates": true,
+                                "timeOut": "3000"
+                            });
+                        }
                     },function(e) {
                         console.error(e)
                     })
@@ -4960,6 +4987,7 @@ href="" removed click added   luish
                         }
                     }, function(e) {
                         var excelData=[];
+                        configuration[0].worksheet[0].column=[];
                         var  originalData1 = e.data[Object.keys(e.data)[0]].resultSet;
                         $('#summarypage').ccPageLoader(false);
                         $.each(e.data[Object.keys(e.data)[0]].metaData, function(i) {
