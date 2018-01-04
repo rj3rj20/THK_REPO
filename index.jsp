@@ -1308,10 +1308,13 @@
 
             input[type=date]::-webkit-outer-spin-button,
             input[type=date]::-webkit-inner-spin-button {
-                -webkit-appearance: none;
-                margin: 0;
+                -webkit-appearance: none !important ;
+                margin: 0 !important;
             }
-
+            .notdisplay{
+                    -webkit-appearance: none;
+                    margin: 0;
+            }
             input[type=date] {
                 -moz-appearance: textfield;
             }
@@ -1860,7 +1863,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-2">
-                                        <span id="outputreport" style="display:none; z-index:99" class="thkreport-output">Output Report Refresh</span>
+                                        <span id="outputreport" style="display:none; z-index:1" class="thkreport-output">Output Report Refresh</span>
                                     </div>
                                     <div class="col-md-3">
                                         <span class="top-note">
@@ -1949,25 +1952,12 @@
                                                     <div class="part-table">
                                                         <table class="table">
                                                             <tbody id="part" name="part">
-                                                                <!-- <c:forEach var="display " items="${partName} ">
-                                                                    <tr>
-                                                                        <td>${display.value}</td>
-                                                                    </tr>
-                                                                    </br>
-                                                                </c:forEach> -->
                                                             </tbody>
                                                         </table>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                <!-- <div class="row hide">
-                                    <div class="col-md-12">
-                                        <h4 style="color: grey">
-                                            ${oemGroup}
-                                        </h4>
-                                    </div>
-                                </div> -->
                                 <div class="" id="right_panel">
                                     <div class="wizard-content" id="exampleFormContainer">
                                         <div class="wizard-pane thk-forms-label" id="exampleBillingOne" url="url0a" role="tabpanel">
@@ -2106,29 +2096,17 @@
                                                                     </div>
                                                                     <div class="col-xs-1">
                                                                         <h4 style="color: grey; text-align:center">ADD</h4>
-
-                                                                        <!-- <button type="button" id="undo_redo_rightAll" class="btn btn-default btn-block">
-<i class="material-icons">fast_forward</i>
-</button> -->
                                                                         <button type="button" style="margin-top:100px;" id="undo_redo_rightSelected" class="btn btn-default btn-block">
                                                                             <i class="material-icons">keyboard_arrow_right</i>
                                                                         </button>
                                                                         <button type="button" id="undo_redo_leftSelected" class="btn btn-default btn-block">
                                                                             <i class="material-icons">keyboard_arrow_left</i>
                                                                         </button>
-                                                                        <!--<button type="button" id="undo_redo_leftAll" class="btn btn-default btn-block">
-<i class="material-icons">fast_rewind</i>
-</button>-->
-
                                                                     </div>
                                                                     <div class="col-xs-3">
                                                                         <div class="thk-multi">
                                                                             <h4>Added Part Name</h4>
                                                                             <select id="undo_redo_to" style="height:310px;" class="form-control" size="10" multiple="multiple">
-                                                                                <!-- <c:forEach var="display" items="${partById}">
-                                                                                    <option value=" ${display.key}" name="toOption[]">
-                                                                                        ${display.value}</option>
-                                                                                </c:forEach> -->
                                                                             </select>
                                                                         </div>
                                                                     </div>
@@ -2731,9 +2709,6 @@
                         <label>Quote (RFQ) Date</label>
                         <div class="input-group date" style="width: 97%">
                             <input class="form-control" type="date" id="quotedDate" data-date-format="mm-dd-yyyy" />
-                            <!-- <span style="padding: 0px;" class="input-group-addon">
-<i class="material-icons">date_range</i>
-</span> -->
                         </div>
                     </div>
                 </div>
@@ -2741,7 +2716,7 @@
                     <div class="form-group">
                         <label>Award (RFQ) date</label>
                         <div class="input-group date" style="width: 97%">
-                            <input class="form-control" type="date" data-date-format="mm-dd-yyyy" id="awardDate" /> <!-- <span style="padding: 0px;" class="input-group-addon"><i class="material-icons">date_range</i></span> -->
+                            <input class="form-control" type="date" data-date-format="mm-dd-yyyy" id="awardDate" />
                         </div>
                     </div>
                 </div>
@@ -2821,13 +2796,6 @@
                 </div>
             </div>
         </div>
-        <!-- <div class="wizard-pane thk-forms-label" id="exportBill" role="tabpanel">
-            <div>
-                <button class="btn btn-primary downloadbtn" style="box-shadow: 0 3px 0 0 #9b0624;background-color: #b70025; border-color: #b70025;">
-                    <i aria-hidden="true"></i>Download Data
-                </button>
-            </div>
-        </div> -->
         </div>
     </div>
 </div>
@@ -2841,9 +2809,6 @@
 <div class="overlay" id="summarypage" style="display:none">
     <div class="overlay-container">   
         <div class="thk-summary-header">
-            <!-- <button type="button" class="close" data-dismiss="modal">&times;</button>                        
-<span style="position: absolute;color: white;right: 15px;top: 9px;font-size: 23px;">
-<i class="mdi mdi-close-circle"></i></span>  -->
             <h4>Summary Details</h4>  
             <span>VBID :- <lable id="summary_vbid"> 56</label></span>                      
         </div>
@@ -3184,44 +3149,6 @@
                                         <div class="thk-summary-line-content-box">
                                             <div class="row thk-summary-rowbottom table-annual">
                                                 <table class="table-bordered">
-                                                    <!--
-<tr>
-<th>Year</th>
-<th>Volume</th>
-<th>Sales</th>
-</tr>
-
-<tr>
-<td>2017</td>
-<td id="summary_volume_2017"></td>
-<td id="summary_sales_2018"></td>
-</tr>
-<tr>
-<td>2018</td>
-<td id="summary_volume_2018"></td>
-<td id="summary_sales_2018"></td>
-</tr>
-<tr>
-<td>2019</td>
-<td id="summary_volume_2019"></td>
-<td id="summary_sales_2019"></td>
-</tr>
-<tr>
-<td>2020</td>
-<td id="summary_volume_2020"></td>
-<td id="summary_sales_2020"></td>
-</tr>
-<tr>
-<td>2021</td>
-<td id="summary_volume_2021"></td>
-<td id="summary_sales_2021"></td>
-</tr>
-<tr>
-<td>2022</td>
-<td id="summary_volume_2022"></td>
-<td id="summary_sales_2022"></td>
-</tr>
--->
                                                     <tr>
                                                         <td><strong>Year</strong></td>
                                                         <td><strong>2017</strong></td>
@@ -3272,7 +3199,6 @@
 
                 <a href="#" id="summary_cancel" class="">Go Back</a>                
                 <a href="#" id="summary_submit" class="red">Submit</a>
-                <!-- <a href="#" id="export_btn" class="red">Download Data</a> -->
             </div>
         </div>
 
@@ -3623,7 +3549,6 @@
                     filterstr='#THK_PROJECT #part > '+filterstr;
                     console.log(filterstr)
                     $(filterstr).show()
-                    //$(j).parent().css('display','table-row')
                 }
                 function    calculatePC() {
                     $('#THK_PROJECT #exampleFormContainer').formValidation('revalidateField', $('input#startPriceLc'));
@@ -3944,24 +3869,15 @@
                         }
                     }
                 });
-
-               // bind_child_drop_downs_PartId('part_select', ["partId"], ["partPlanId_Supplier"], "/thk/planPartId");
                 bind_child_drop_downs_productName('part_select', ["productName"], ["productGroupName"], "/thk/productName","/thk/productGroupName");
                 bind_child_drop_downs_FxRate('currency', ["xRate"], "/thk/xRate");
                 var thk_wizard = $("#THK_PROJECT #exampleWizardFormContainer");
-
                 thk_wizard.wizard({
                     cacheContent: false,
                     step: ".steps .step, .pearls .pearl",
                     templates: {
                         buttons: function() {
-                            var options = this.options;                                    
-                            /*
-
-
-href="" removed click added   luish 
-*/
-
+                            var options = this.options; 
                             return '<div class="thk--buttons-footer" id="thk_footer"><div class="wizard-buttons">' +
                                 '<a class="btn btn-primary"  data-wizard="back" role="button"><i class="material-icons" >arrow_back</i>' + options.buttonLabels.back + '</a>' +
                                 '<a  class=" btn btn-primary pull-right"    data-wizard="next" role="button">' + options.buttonLabels.next + '<i class="material-icons">arrow_forward</i></a>' +
@@ -4068,7 +3984,6 @@ href="" removed click added   luish
                         });
                     },							
                     onNext: function(from, to) {
-
                         var numTabs = thk_wizard.find('.wizard-pane').length,
                             isValidTab = validateForm(to.index - 1);
                         if (!isValidTab) {
@@ -4101,9 +4016,6 @@ href="" removed click added   luish
                                     }
                                 }, function(e) {            
                                     $("#THK_PROJECT #undo_redo,#THK_PROJECT #undo_redo_to,#THK_PROJECT #part").empty();
-                                    // var tr = '<tr><td class="thbgcolor">' + e.data[1][0] + '</td><td class="thbgcolor">' + e.data[1][1] + '</td><td class="thbgcolor">' + e.data[1][2] + '</td><td class="thbgcolor">' + e.data[1][3] + '</td><td class="thbgcolor">' + e.data[1][4] + '</td><td class="thbgcolor">' + e.data[1][5] + '</td><td class="thbgcolor">' + e.data[1][6] + '</td><td class="thbgcolor">' + e.data[1][7] + '</td></tr>'
-                                    // $("#THK_PROJECT  #tbodyTableDynamic2").html(tr)
-                                    // $("#THK_PROJECT #input_tbody").html(tr);
                                     if (e.data[0].hasOwnProperty("partName")) {
                                         $.each(e.data[0].partName, function(i, d) {
                                             $("#THK_PROJECT #undo_redo").append('<option value="' + d.id + '">' + d.value + '</option>');
@@ -4150,13 +4062,6 @@ href="" removed click added   luish
                                 $("#THK_PROJECT #inc_height").addClass("rowheight");
                                 $("#THK_PROJECT #part").empty();
                                 $("#THK_PROJECT #thkPartName,#THK_PROJECT #customerPartNo,#THK_PROJECT #partDescLong,#THK_PROJECT #partId,#THK_PROJECT #part_select,#THK_PROJECT #startPriceLc").val('');
-                                // sendRequest("/thk/saveParts", {
-                                //     data:{
-                                //         "vbId":$("#THK_PROJECT #vbidhidden").val().trim(),
-                                //         "addParts":opt
-                                //     }},function(e){
-
-                                //     },function(e){})
                                 sendRequest("/thk/displayVehicleData", {
                                     data: {
                                         "vbId":$("#THK_PROJECT #vbidhidden").val().trim(),
@@ -4164,8 +4069,6 @@ href="" removed click added   luish
                                         "partIds":opt
                                     }
                                 }, function(e) {
-                                   // $.each(e.data[18].partNames, function(i, j) {
-                                        //$("#THK_PROJECT #part").append("<tr><td class='tdborder-inprogress' style='padding-left:10px' data-id='" + (i + 1) + "'>" + this.value + "</td><td><input type='radio' name='partnamevalue' value=" + this.id + " style='float:right'/></td></tr></br>")
                                     $('#THK_PROJECT').ccPageLoader(false);
                                     $.each(e.data.partName, function(i, j) {
                                         var partStatus;
@@ -4185,7 +4088,6 @@ href="" removed click added   luish
                                     $("#THK_PROJECT .curryear5").text(Number(e.data.planYearVehicle[0].value)+4);
                                     $("#THK_PROJECT .curryear6").text(Number(e.data.planYearVehicle[0].value)+5);
                                     $("#part").find("input").on("click", function(e) {
-                                        console.log('hello')
                                         var ele = $(this).parents("tr").find("td:first-child");
                                         var chck_val = $(this).parents("tr").find("input").val()
                                         $("#part_select").val(ele.text());
@@ -4201,15 +4103,13 @@ href="" removed click added   luish
                                             }else{
                                                 completedpart=0;
                                             }
-
                                             $("#THK_PROJECT #partId").val(e.data.PartPlanId[0].id);
                                             $("#THK_PROJECT #partId").parent().removeClass("has-error");
                                             $("#THK_PROJECT #partDesc").val(e.data.partDesc[0].value);
                                             $("#THK_PROJECT #productName").val(e.data.productName[0].value);
-                                        $("#THK_PROJECT #" + "productName").attr("thkproductnamepid", e.data.productName[0].id);
-                                        $("#THK_PROJECT #" + "productGroupName").val(e.data.productGroupName[0].value);
-
-                                            }, function(e) {
+                                            $("#THK_PROJECT #" + "productName").attr("thkproductnamepid", e.data.productName[0].id);
+                                            $("#THK_PROJECT #" + "productGroupName").val(e.data.productGroupName[0].value);
+                                        }, function(e) {
                                             console.error(e)
                                         })
                                         $('#THK_PROJECT #exampleFormContainer').formValidation('revalidateField', $($('input#part_select')));
@@ -4269,7 +4169,6 @@ href="" removed click added   luish
                                     "preventDuplicates": true,
                                     "timeOut": "3000"
                                 });
-
                             }
                             return false;
                             $("#THK_PROJECT #part_select").val('');
@@ -4420,9 +4319,9 @@ href="" removed click added   luish
                                 $('#THK_PROJECT #myTable').empty();
                                 e = e.data;
                                 if (e!=null && typeof e === 'object') {
+                                    var prevdate;
                                     for (var i = 0, j = e.length; i < j; i++) {
-                                        var ele = $('<tr><td><input type="text"  value="' + e[i][0] + '" disabled readonly class="form-control test-control" style="width: 100%;" name="pricechange"/></td><td><div class="input-group date" ><input style="width: 100%;" class="form-control test-control" id="test" type="date" onkeydown="return false" value="' + e[i][1] + '" name="monthYear"/></div></td><td><select class="form-control test-control" style="width: 100%;" name="reason"><option id="1" value="1">Contractual</option><option id="2" value="2">Non Contractual Committed</option><option id="3" value="3"> Non-Contractual Non Committed</option><option id="4" value="4">Material Inflation/Deflation</option><option id="5" value="5"> Tooling, Amortization, Packaging, Others</option><option id="6" value="6">VAVE (Value Add Value Engineering)</option></select></td><td ><fieldset class="test-control"><input type="radio" checked name="ChangeType' + i + '"data-type="abs">Absolute Value<br><input type="radio" name="ChangeType' + i + '" class="group12" data-type="percent">%Change</fieldset></td><td><div class="form-group" style="width: 100%; margin-top: 0px;"><input value="' + e[i][4] + '" type="text" class="form-control test-control changeVal" maxlength="14" name="itemValue" data-fv-notempty="true" required="required"></div></td><td><input value="' + e[i][6] + '" type="number" disabled readonly class="form-control test-control" style="width: 100%; cursor: not-allowed;" name="priceInclude" disabled readonly/></td><td><input type="number" class="form-control test-control" style="width: 100%; cursor: not-allowed;" name="variance" disabled readonly/></td><td><i id="fetch_del_row" class="material-icons" style="margin-left: 40%; cursor:pointer"  aria-hidden="true">delete_forever</i></td></tr>')
-
+                                        var ele = $('<tr><td><input type="text"  value="' + e[i][0] + '" disabled readonly class="form-control test-control" style="width: 100%;" name="pricechange"/></td><td><div class="input-group date" style="position: relative;"><span style="position: absolute;width: 10px;height: 10px;background: #ffffff;right: 30px;top: 13px;z-index: 9;"></span><input style="width: 100%;" class="form-control test-control" id="test" type="date" onkeydown="return false" value="' + e[i][1] + '" name="monthYear"/></div></td><td><select class="form-control test-control" style="width: 100%;" name="reason"><option id="1" value="1">Contractual</option><option id="2" value="2">Non Contractual Committed</option><option id="3" value="3"> Non-Contractual Non Committed</option><option id="4" value="4">Material Inflation/Deflation</option><option id="5" value="5"> Tooling, Amortization, Packaging, Others</option><option id="6" value="6">VAVE (Value Add Value Engineering)</option></select></td><td ><fieldset class="test-control"><input type="radio" checked name="ChangeType' + i + '"data-type="abs">Absolute Value<br><input type="radio" name="ChangeType' + i + '" class="group12" data-type="percent">%Change</fieldset></td><td><div class="form-group" style="width: 100%; margin-top: 0px;"><input value="' + e[i][4] + '" type="text" class="form-control test-control changeVal" maxlength="14" name="itemValue" data-fv-notempty="true" required="required"></div></td><td><input value="' + e[i][6] + '" type="number" disabled readonly class="form-control test-control" style="width: 100%; cursor: not-allowed;" name="priceInclude" disabled readonly/></td><td><input type="number" class="form-control test-control" style="width: 100%; cursor: not-allowed;" name="variance" disabled readonly/></td><td><i id="fetch_del_row" class="material-icons" style="margin-left: 40%; cursor:pointer"  aria-hidden="true">delete_forever</i></td></tr>')
                                         $('#THK_PROJECT #myTable').append(ele);
                                         handleDate()
                                         $('#THK_PROJECT #exampleFormContainer').formValidation('addField', $('[name="itemValue"]'));
@@ -4453,9 +4352,17 @@ href="" removed click added   luish
                                                 aDec: ","
                                             });
                                         }
-                                        ele.find('[name="monthYear"]').on('change', function() {
-                                            handleDate();
+                                        ele.find('[name="monthYear"]').on('click', function(e){
+                                            prevdate = $(e.target).val();
                                         });
+                                        ele.find('[name="monthYear"]').on('change', function(e) {
+                                            if($(e.target).val() == ""){
+                                                $(e.target).val(prevdate);
+                                            }else{
+                                                handleDate();
+                                            }                                            
+                                        });
+                                        
                                         ele.find('[name="monthYear"]').on('mousewheel.disableScroll', function(e) {
                                             e.preventDefault()
                                         })
@@ -4469,9 +4376,6 @@ href="" removed click added   luish
                                         if ( $('#THK_PROJECT #test')[0].type != 'date' ){
                                             $('#THK_PROJECT #test').datepicker();
                                         }
-                                        //ele.find('[name="monthYear"]').on('click', function() {
-                                        //  handleDate();
-                                        //});
                                     }
                                     $("#THK_PROJECT #fetch_del_row").on('click', function(evt) {
                                         if(completedpart==1){
@@ -4646,7 +4550,6 @@ href="" removed click added   luish
                                 data.data["flag"]='Y';
                                 updateflag=0;
                             }
-
                             sendRequest('/single/get-kettleData', {
                                 "data": {
                                     "businessobject_name": "THK KTR",
@@ -4689,13 +4592,11 @@ href="" removed click added   luish
                                     }else if(e.reason == 6){
                                         e.reason='VAVE (Value Add Value Engineering)'
                                     }
-
                                     if(e.radioAbsolute == 'A'){
                                         e.radioAbsolute='Absolute Value'
                                     }else if(e.radioAbsolute == 'P'){
                                         e.radioAbsolute='%Change'
                                     }
-
                                     tbody+='<tr><td>'+e.priceChange+'</td><td>'+e.monthYear+'</td><td>'+e.reason+'</td><td>'+e.radioAbsolute+'</td><td>'+e.absoluteValue+'</td><td>'+e.priceInc+'</td></tr>'
                                 })
                                 $("#THK_PROJECT #summary_pricing_table").html(tbody);
@@ -4804,6 +4705,9 @@ href="" removed click added   luish
                                     });
                                     $('#THK_PROJECT').ccPageLoader(false);
                                 } else if (e.data == null) {
+                                    var x = $("#THK_PROJECT #exampleWizardFormContainer").data('wizard');
+                                    var currentpage= x.current().index;
+                                    x.goTo(currentpage-1)
                                     toastr.error("Mandatory Data is missing", "", {
                                         "positionClass": "toast-top-right",
                                         "preventDuplicates": true,
@@ -4830,7 +4734,6 @@ href="" removed click added   luish
                             $("#THK_PROJECT #left_panel,#THK_PROJECT #ihs_data_table").hide();
                             $("#THK_PROJECT #right_panel").removeClass("col-md-1-80").addClass("col-md-12");
                             $("#THK_PROJECT #inc_height").removeClass("rowheight");
-                            //$('#THK_PROJECT #exampleFormContainer').formValidation('revalidateField', $('#THK_PROJECT #partId'));
                         } else if (to.index == '2') {
                             $('#THK_PROJECT #part').find('input[type=radio]').removeAttr('disabled', 'disabled')
                             $('#THK_PROJECT #thk_filters').off('click').on('click',function(e){
@@ -4900,6 +4803,13 @@ href="" removed click added   luish
                             },function(e) {
                                 console.error(e)
                             })
+                        }else if(e.data.data.OutputReport[0].status.toLowerCase().substr(0,5) == 'error'){
+                            $('#THK_PROJECT').ccPageLoader(false);
+                            toastr.error("Unable to generate output report. Please try again in sometime", "", {
+                                "positionClass": "toast-top-right",
+                                "preventDuplicates": true,
+                                "timeOut": "5000"
+                            });
                         }else{
                             $('#THK_PROJECT').ccPageLoader(false);
                             toastr.warning("Output report refresh is running", "", {
@@ -4936,7 +4846,6 @@ href="" removed click added   luish
                     $("#THK_PROJECT #right_panel").removeClass("col-md-1-80").addClass("col-md-12");
                     $("#THK_PROJECT #thkPartName").val('');
                     $("#THK_PROJECT #customerPartNo").val('');
-
                 })
 
                 $('#THK_PROJECT #planner_icon').on('click', function(e) {
@@ -4947,7 +4856,6 @@ href="" removed click added   luish
                     $("#THK_PROJECT #inc_height").removeClass("rowheight");
                     $("#THK_PROJECT #thkPartName").val('');
                     $("#THK_PROJECT #customerPartNo").val('');
-                    
                 })
                 $('#THK_PROJECT #filterbtn').on('click',function(e){
                     $('.filter-container').toggle();
@@ -5091,46 +4999,28 @@ href="" removed click added   luish
                                 for (var i = 0; i != s.length; ++i) view[i] = s.charCodeAt(i) & 0xFF;
                                 return buf;
                             }
-                            /*
-filesaver.js used to download   luish
-*/
                             var aa=new Date();
                             saveAs(new Blob([s2ab(atob(data))], {
                                 type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64"
                             }),  "PlannerReport"+'_'+aa.getHours()+'-'+aa.getMinutes()+"-"+aa.getSeconds()+"_"+aa.toLocaleDateString()+".xlsx");
-
-
-                            //        window.open("data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64," + data)
                         });
                     },function() {});
                 });
-                /*
-                        added click action          luish  */
                 $('a[data-wizard="next"]').on('click', function(e) {
                     $("#THK_PROJECT #exampleWizardFormContainer").wizard('next'); 
-
                 })
                 $('a[data-wizard="back"]').on('click', function(e) {
                     $("#THK_PROJECT #exampleWizardFormContainer").wizard('back'); 
-
                 })
                 $('a[data-wizard="finish"]').on('click', function(e) {
-                    $("#THK_PROJECT #exampleWizardFormContainer").wizard('finish'); 
-
+                    $("#THK_PROJECT #exampleWizardFormContainer").wizard('finish');
                 })
-
                 $("#THK_PROJECT #summary_cancel").on('click',function(){	
                     var x = $("#THK_PROJECT #exampleWizardFormContainer").data('wizard');
                     x.goTo(7);						
                     $('#THK_PROJECT #summarypage').css({'display':'none'});	
-
                 })
                 $("#THK_PROJECT #summary_submit").on('click',function(){
-                    // var data={};
-                    // data.data["part"] = $("#THK_PROJECT #part").val();
-                    // data.data["vbIdHidden"] = $("#THK_PROJECT #vbIdHidden").val();
-                    // data.data["planPartId"] = $("#THK_PROJECT #partId").val();
-                    // console.log(data)
                     sendRequest("/thk/finalUpdate",{
                         "data": {
                             "part":$("#THK_PROJECT #part").val(),
@@ -5152,47 +5042,118 @@ filesaver.js used to download   luish
                             });
                         }
                     },function(e){
-
                     })                                    
                     $('#THK_PROJECT #summarypage').css({'display':'none'});
                     var x = $("#THK_PROJECT #exampleWizardFormContainer").data('wizard');
                     x.goTo(2);
                     $('#THK_PROJECT #part').find('input[type=radio]').removeAttr('disabled', 'disabled');
+                    $('#THK_PROJECT #part_select').val('');
+                    $('#THK_PROJECT #partId').val('');
                     $('#THK_PROJECT #thk_filters').off('click').on('click',function(e){
-                                $('.filter-container').toggle();
-                            })
-                    // var x = $("#THK_PROJECT #exampleWizardFormContainer").data('wizard');
-                    // $('#THK_PROJECT #exampleWizardFormContainer').find('[data-fv-field]').val('')
-                    // $('#THK_PROJECT #part').find('input[type=radio]').removeAttr('disabled', 'disabled');
-                    // $('input[name=radio]').prop('checked', false);
-                    // $("#THK_PROJECT #left_panel,#THK_PROJECT #ihs_data_table").hide();
-                    // $("#THK_PROJECT #thk_header").show();
-                    // $("#THK_PROJECT #undo_redo,#THK_PROJECT #undo_redo_to").empty();
-                    // $("#THK_PROJECT #part").empty('');
-                    // $("#THK_PROJECT #right_panel").removeClass("col-md-1-80").addClass("col-md-12");
-                    // $("#THK_PROJECT #inc_height").removeClass("rowheight");	
-                    // $("#THK_PROJECT #thkPartName").val('');
-                    // $("#THK_PROJECT #customerPartNo").val('');
-                    // x.reset();
-                    // $("#THK_PROJECT #tbodyTableDynamic").hide();
-                    // $("#THK_PROJECT #myVBTable").dataTable({
-                    //     "ordering": false,
-                    //     "retrieve": true,
-                    //     "language": {
-                    //         "lengthMenu": 'Display <select>' +
-                    //         '<option value="5">5</option>' +
-                    //         '<option value="10">10</option>' +
-                    //         '<option value="15">15</option>' +
-                    //         '<option value="20">20</option>' +
-                    //         '<option value="25">25</option>' +
-                    //         '<option value="-1">All</option>' +
-                    //         '</select> records'
-                    //     },
-                    //     "infoEmpty": "No entries to show"
-                    // });
-                    // $('#THK_PROJECT #myVBTable').DataTable().destroy();
-                    // x.reset();
-                })
+                        $('.filter-container').toggle();
+                    })
+                    var opt = [];
+                    $("#THK_PROJECT #undo_redo_to option").each(function() {
+                        opt.push($(this).val())
+                    });
+                    sendRequest("/thk/displayVehicleData", {
+                            data: {
+                                "vbId":$("#THK_PROJECT #vbidhidden").val().trim(),
+                                "partPlanId":$('#partId').val(),
+                                "partIds":opt
+                            }
+                        }, function(e) {
+                                $("#THK_PROJECT #part").empty();
+                            $('#THK_PROJECT').ccPageLoader(false);
+                            $.each(e.data.partName, function(i, j) {
+                                var partStatus;
+                                if(j.partStatus.toLowerCase() == 'completed'){
+                                    partStatus='complete';
+                                }else if(j.partStatus.toLowerCase() == 'in progress'){
+                                    partStatus='inprogress';
+                                }else{
+                                    partStatus= 'yetostart'
+                                }
+                                $("#THK_PROJECT #part").append("<tr data-status='"+this.partStatus.toLowerCase()+"' data-type='"+this.partType.toLowerCase()+"' data-supplier='"+this.supplierName.toLowerCase()+"'><td class='tdborder-"+partStatus+"' style='padding-left:10px' data-status='"+this.partStatus+"' data-type='"+this.partType+"' data-supplier='"+this.supplierName+"' data-id='" + (i + 1) + "'>" + this.partName + "</td><td><input type='radio' name='partnamevalue' value=" + this.partId + " style='float:right'/></td></tr></br>")
+                            });
+                            $("#THK_PROJECT .curryear1").text(Number(e.data.planYearVehicle[0].value));
+                            $("#THK_PROJECT .curryear2").text(Number(e.data.planYearVehicle[0].value)+1);
+                            $("#THK_PROJECT .curryear3").text(Number(e.data.planYearVehicle[0].value)+2);
+                            $("#THK_PROJECT .curryear4").text(Number(e.data.planYearVehicle[0].value)+3);
+                            $("#THK_PROJECT .curryear5").text(Number(e.data.planYearVehicle[0].value)+4);
+                            $("#THK_PROJECT .curryear6").text(Number(e.data.planYearVehicle[0].value)+5);
+                            $("#part").find("input").on("click", function(e) {
+                                console.log('hello')
+                                var ele = $(this).parents("tr").find("td:first-child");
+                                var chck_val = $(this).parents("tr").find("input").val()
+                                $("#part_select").val(ele.text());
+                                $("#part_select").attr("value", chck_val);
+                                sendRequest("/thk/planPartId", {
+                                    data: {
+                                        id: chck_val,
+                                        vbId: $("#THK_PROJECT #vbidhidden").val().trim()
+                                    }
+                                }, function(e) {
+                                    if(e.data.PartPlanId[0].value.toLowerCase()=='complete planned'){
+                                        completedpart=1;
+                                    }else{
+                                        completedpart=0;
+                                    }
+
+                                    $("#THK_PROJECT #partId").val(e.data.PartPlanId[0].id);
+                                    $("#THK_PROJECT #partId").parent().removeClass("has-error");
+                                    $("#THK_PROJECT #partDesc").val(e.data.partDesc[0].value);
+                                    $("#THK_PROJECT #productName").val(e.data.productName[0].value);
+                                $("#THK_PROJECT #" + "productName").attr("thkproductnamepid", e.data.productName[0].id);
+                                $("#THK_PROJECT #" + "productGroupName").val(e.data.productGroupName[0].value);
+
+                                    }, function(e) {
+                                    console.error(e)
+                                })
+                                $('#THK_PROJECT #exampleFormContainer').formValidation('revalidateField', $($('input#part_select')));
+                                $('#THK_PROJECT #exampleFormContainer').formValidation('revalidateField', $($('input#partId')));
+                            });                                  
+                            $("#THK_PROJECT #oemGroup_screen2").val(e.data.oemGroupVehicle[0].value)
+                            $("#THK_PROJECT #oemGroup_screen2")[0].setAttribute("hiddenId", e.data.oemGroupVehicle[0].id)
+                            $("#THK_PROJECT #oem").val(e.data.oemNameVehicle[0].value)
+                            $("#THK_PROJECT #oem")[0].setAttribute("hiddenId", e.data.oemNameVehicle[0].id)
+                            $("#THK_PROJECT #badge").val(e.data.badgeNameVehicle[0].value)
+                            $("#THK_PROJECT #badge")[0].setAttribute("hiddenId", e.data.badgeNameVehicle[0].id)
+                            $("#THK_PROJECT #platfromFamily").val(e.data.platFormFamilyVehicle[0].value)
+                            $("#THK_PROJECT #platfromFamily")[0].setAttribute("hiddenId", e.data.platFormFamilyVehicle[0].id)
+                            $("#THK_PROJECT #platfrom").val(e.data.platformVehicle[0].value)
+                            $("#THK_PROJECT #platfrom")[0].setAttribute("hiddenId", e.data.platformVehicle[0].id)
+                            $("#THK_PROJECT #namePlate").val(e.data.namePlateVehicle[0].value)
+                            $("#THK_PROJECT #namePlate")[0].setAttribute("hiddenId", e.data.namePlateVehicle[0].id)
+                            $("#THK_PROJECT #regionName").val(e.data.regionNameVehicle[0].value)
+                            $("#THK_PROJECT #regionName")[0].setAttribute("hiddenId", e.data.regionNameVehicle[0].id)
+                            $("#THK_PROJECT #countryName").val(e.data.countryNameVehicle[0].value)
+                            $("#THK_PROJECT #countryName")[0].setAttribute("hiddenId", e.data.countryNameVehicle[0].id)
+                            $("#THK_PROJECT #sopVal").val(e.data.sopVehicle[0].value)
+                            $("#THK_PROJECT #sopVal")[0].setAttribute("hiddenId", e.data.sopVehicle[0].id)
+                            $("#THK_PROJECT #eopVal").val(e.data.eopVehicle[0].value)
+                            $("#THK_PROJECT #eopVal")[0].setAttribute("hiddenId", e.data.eopVehicle[0].id)
+                            $("#THK_PROJECT #year1Val").val(e.data.year1Vehicle[0].value)
+                            $("#THK_PROJECT #year1Val")[0].setAttribute("hiddenId", e.data.year1Vehicle[0].id)
+                            $("#THK_PROJECT #year2Val").val(e.data.year2Vehicle[0].value)
+                            $("#THK_PROJECT #year2Val")[0].setAttribute("hiddenId", e.data.year2Vehicle[0].id)
+                            $("#THK_PROJECT #year3Val").val(e.data.year3Vehicle[0].value)
+                            $("#THK_PROJECT #year3Val")[0].setAttribute("hiddenId", e.data.year3Vehicle[0].id)
+                            $("#THK_PROJECT #year4Val").val(e.data.year4Vehicle[0].value)
+                            $("#THK_PROJECT #year4Val")[0].setAttribute("hiddenId", e.data.year4Vehicle[0].id)
+                            $("#THK_PROJECT #year5Val").val(e.data.year5Vehicle[0].value)
+                            $("#THK_PROJECT #year5Val")[0].setAttribute("hiddenId", e.data.year5Vehicle[0].id)
+                            $("#THK_PROJECT #year6Val").val(e.data.year6Vehicle[0].value)
+                            $("#THK_PROJECT #year6Val")[0].setAttribute("hiddenId", e.data.year6Vehicle[0].id)
+                            var tr = '<tr><td>' + $("#THK_PROJECT #vbidhidden").val() + '</td><td>' + e.data.oemGroupVehicle[0].value + '</td><td>' + e.data.oemNameVehicle[0].value+ '</td><td>' + e.data.badgeNameVehicle[0].value + '</td><td>' + e.data.platFormFamilyVehicle[0].value + '</td><td>' + e.data.platformVehicle[0].value + '</td><td>' + e.data.namePlateVehicle[0].value + '</td><td>' + e.data.regionNameVehicle[0].value + '</td><td id="tablesop">' + e.data.sopVehicle[0].value + '</td><td id="tableeop">' + e.data.eopVehicle[0].value + '</td></tr>'
+                            $('#THK_PROJECT #tablesop').show()
+                            $('#THK_PROJECT #tableeop').show()
+                            $("#THK_PROJECT  #tbodyTableDynamic2").html(tr)
+                            $("#THK_PROJECT #input_tbody").html(tr);
+                            $('#THK_PROJECT').ccPageLoader(false);
+                        }, function(e) {
+                        })
+                    })
 
             })
 
